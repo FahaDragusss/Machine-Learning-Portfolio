@@ -1,6 +1,7 @@
 import numpy as np
-import pickle
+import joblib
 
+# Define the model components
 model = {
     "w": np.array([[-0.78103318],
                    [ 0.10291997],
@@ -20,5 +21,7 @@ model = {
                      3.68898508, 2.6940307, 0.28290347, 0.53879275, 0.35044875])
 }
 
-with open("model.pkl", "wb") as f:
-    pickle.dump(model, f)
+# Save to model.joblib
+joblib.dump(model, "model.joblib")
+
+print("✅ model.joblib has been saved successfully.")
