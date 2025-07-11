@@ -47,7 +47,7 @@ project/
 ├── Implementation/
 │   ├── MLR Model.ipynb
 │   └── handled-car-mpg.csv
-├── results/                       # Final visuals for presentation
+├── Results/                       # Final visuals for presentation
 └── README.md
 ```
 
@@ -80,7 +80,7 @@ This project includes animations and plots to visualize the training and converg
 ### 🎞️ Regression Line Fitting Animation
 Shows how the model adjusts the regression line over time to minimize cost.
 
-![Regression Animation](./results/regression_animation.gif)
+![Regression Animation](./Results/regression_animation.gif)
 
 ---
 
@@ -90,7 +90,7 @@ Visualizes the descent of the cost function over iterations, confirming successf
 - **Left plot**: Iterations ≤ 5000  
 - **Right plot**: Iterations ≥ 6000 up to convergence
 
-![Cost Convergence](./results/cost_convergence.gif)
+![Cost Convergence](./Results/cost_convergence.gif)
 
 ---
 
@@ -100,7 +100,7 @@ Demonstrates how model weights (`θ`) stabilize over training iterations.
 - **Left plot**: Iterations ≤ 5000  
 - **Right plot**: Iterations ≥ 6000 up to convergence
 
-![Weights Convergence](./results/weights_convergence.gif)
+![Weights Convergence](./Results/weights_convergence.gif)
 
 ---
 
