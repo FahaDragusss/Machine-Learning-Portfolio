@@ -33,16 +33,16 @@ It is trained on a real-world dataset and is deployed using Streamlit on Hugging
 ## 🧪 Project Structure
 
 ```
-project/
+Multiple Linear Regression/
 │
-├── Analysis and visualization/    # Generated GIFs and plots
+├── Analysis and visualization/    # Code used to generate GIFs and plots
 ├── app/                           # Streamlit interface
 │   ├── app.py
 │   ├── model.joblib
 │   └── requirements.txt
 ├── DevSet/                        # Prototype implementation on synthetic data
 ├── EDA-&-Preprocessing/
-│   ├── car-mpg.csv
+│   ├── car-mpg.csv                # Dataset
 │   └── EDA & preprocessing.ipynb
 ├── Implementation/
 │   ├── MLR Model.ipynb
