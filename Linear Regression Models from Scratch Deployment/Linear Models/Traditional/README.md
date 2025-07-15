@@ -33,7 +33,7 @@ It is trained on a real-world dataset and is deployed using Streamlit on Hugging
 ## 🧪 Project Structure
 
 ```
-Multiple Linear Regression/
+Traditional/
 │
 ├── Analysis and visualization/    # Code used to generate GIFs and plots
 ├── app/                           # Streamlit interface
