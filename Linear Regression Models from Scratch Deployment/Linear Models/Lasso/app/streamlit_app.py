@@ -1,16 +1,91 @@
 import streamlit as st
 import numpy as np
-import joblib
+import joblib   
+
+# --- Query parameter to control navigation ---
+query_params = st.query_params
+if "enter" in query_params:
+    st.session_state["show_landing"] = False
+else:
+    st.session_state["show_landing"] = True
+
+# --- Landing Page ---
+if st.session_state["show_landing"]:
+    st.markdown(
+        """
+        <style>
+        .landing-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 95vh;
+            text-align: center;
+            color: white;
+        }
+
+        .landing-title {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #39FF14;
+            margin-bottom: 10px;
+        }
+
+        .landing-tagline {
+            font-size: 1.2em;
+            color: #CCCCCC;
+            margin-bottom: 5px;
+        }
+
+        .landing-author {
+            font-style: italic;
+            color: #999999;
+            margin-bottom: 30px;
+        }
+
+        .button-wrapper {
+            margin-top: 20px;
+        }
+
+        .enter-button {
+            background-color: #212121;
+            color: white;
+            border: 2px solid #39FF14;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .enter-button:hover {
+            background-color: #39FF14;
+            color: black;
+        }
+        </style>
+
+        <div class="landing-container">
+            <div class="landing-title">Lasso Regression</div>
+            <div class="landing-tagline">Built from scratch.</div>
+            <div class="landing-author">by FahaDragusss</div>
+            <div class="button-wrapper">
+                <a href="?enter=true" class="enter-button">Enter App</a>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    st.stop()
 
 # Load model
 model = joblib.load("model.joblib")
 w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 
 # Page config
-st.set_page_config(page_title="Linear Regression App", layout="centered")
+st.set_page_config(page_title="Lasso Regression App", layout="centered")
 
 # Title
-st.title("🏠 Linear Regression Predictor")
+st.title("🏠 Lasso Regression Predictor")
 st.markdown("Enter 10 feature values to get a model prediction.")
 
 # Initialize session state to store default input features
@@ -97,7 +172,7 @@ with st.expander("📂 Model Details"):
 
 # Dataset used
 with st.expander("📚 Dataset Information"):
-    st.markdown("**Model:** Multiple Linear Regression")
+    st.markdown("**Model:** Lasso Regression")
     st.write("Trained using gradient descent from scratch (no ML libraries used for training).")
     st.write("The model was trained on a dataset with 10 features, including both numerical and categorical data. All features were normalized before training.")
 
