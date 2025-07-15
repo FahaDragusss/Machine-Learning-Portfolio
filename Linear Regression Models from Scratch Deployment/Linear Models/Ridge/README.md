@@ -9,7 +9,7 @@ Unlike the base multiple linear regression model (which was deployed), this Ridg
 ## 🌐 Live Demo
 
 > Try the model directly here:  
-🔗 [Ridge Regression on Hugging Face]
+🔗 [Ridge Regression on Hugging Face](https://huggingface.co/spaces/FahaDragusss/Ridge-regression-scratch-streamlit)
 
 ---
 

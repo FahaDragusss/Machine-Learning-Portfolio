@@ -9,7 +9,7 @@ While the model performs **competitively**, it does **not outperform** tradition
 ## 🌐 Live Demo
 
 > Try the model directly here:  
-🔗 [ElasticNet Regression on Hugging Face]
+🔗 [ElasticNet Regression on Hugging Face](https://huggingface.co/spaces/FahaDragusss/ElasticNet-regression-scratch-streamlit)
 
 ---
 
