@@ -82,10 +82,10 @@ model = joblib.load("model.joblib")
 w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 
 # Page config
-st.set_page_config(page_title="Lasso Regression App", layout="centered")
+st.set_page_config(page_title="ElasticNet Regression App", layout="centered")
 
 # Title
-st.title("🚗💨Lasso Regression Predictor")
+st.title("🚗💨ElasticNet Regression Predictor")
 st.markdown("Enter 10 feature values to get a model prediction.")
 
 # Initialize session state to store default input features
@@ -155,7 +155,7 @@ with st.expander("📊 Model Performance Metrics"):
     """)
 
 # Animation
-#st.image("lasso_regression_animation.gif", caption="Model Training", use_container_width=True)
+#st.image("ElasticNet_regression_animation.gif", caption="Model Training", use_container_width=True)
 
 #st.image("cost_convergence.gif", caption="Cost Convergence", use_container_width=True)
 
@@ -174,7 +174,7 @@ with st.expander("📂 Model Details"):
 
 # Dataset used
 with st.expander("📚 Dataset Information"):
-    st.markdown("**Model:** Lasso Regression")
+    st.markdown("**Model:** ElasticNet Regression")
     st.write("Trained using gradient descent from scratch (no ML libraries used for training).")
     st.write("The model was trained on a dataset with 10 features, including both numerical and categorical data. All features were normalized before training.")
 

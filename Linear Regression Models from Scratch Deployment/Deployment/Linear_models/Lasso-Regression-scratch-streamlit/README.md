@@ -1,11 +1,11 @@
 ---
-title: Ridge Regression Scratch Streamlit
+title: Multiple Lasso Regression Scratch Streamlit
 emoji: 🚀
-colorFrom: purple
-colorTo: pink
+colorFrom: red
+colorTo: red
 sdk: streamlit
 app_file: app.py
-short_description: Ridge Regression from scratch
+short_description: Multiple Lasso Regression
 license: mit
 ---
 

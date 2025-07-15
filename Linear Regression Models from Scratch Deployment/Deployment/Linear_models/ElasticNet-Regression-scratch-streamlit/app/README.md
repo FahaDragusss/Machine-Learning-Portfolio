@@ -1,8 +1,8 @@
 ---
-title: Ridge Regression Scratch Streamlit
+title: ElasticNet Regression Scratch Streamlit
 emoji: 🚀
 colorFrom: purple
-colorTo: pink
+colorTo: red
 sdk: streamlit
 app_file: app.py
 short_description: Ridge Regression from scratch

@@ -1,11 +1,10 @@
 ---
-title: ElasticNet Regression Scratch Streamlit
-emoji: 🚀
-colorFrom: orange
-colorTo: red
+title: MLR-scratch-streamlit
+emoji: 📊
+colorFrom: blue
+colorTo: pink
 sdk: streamlit
 app_file: app.py
-short_description: Ridge Regression from scratch
 license: mit
 ---
 

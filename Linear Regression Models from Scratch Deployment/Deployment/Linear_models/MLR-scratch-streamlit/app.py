@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-import joblib   
+import joblib
 
 # --- Query parameter to control navigation ---
 query_params = st.query_params
@@ -65,7 +65,7 @@ if st.session_state["show_landing"]:
         </style>
 
         <div class="landing-container">
-            <div class="landing-title">Ridge Regression</div>
+            <div class="landing-title">Multiple Linear Regression</div>
             <div class="landing-tagline">Built from scratch.</div>
             <div class="landing-author">by FahaDragusss</div>
             <div class="button-wrapper">
@@ -77,15 +77,16 @@ if st.session_state["show_landing"]:
     )
     st.stop()
 
+
 # Load model
 model = joblib.load("model.joblib")
 w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 
 # Page config
-st.set_page_config(page_title="Ridge Regression App", layout="centered")
+st.set_page_config(page_title="Linear Regression App", layout="centered")
 
 # Title
-st.title("🚗💨Ridge Regression Predictor")
+st.title("🚗💨Linear Regression Predictor")
 st.markdown("Enter 10 feature values to get a model prediction.")
 
 # Initialize session state to store default input features
@@ -142,29 +143,20 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 5.6778  
-    - **Mean Absolute Error (MAE):** 1.8572
-    - **R² Score:** 0.8998
+    - **Mean Squared Error (MSE):** 5.6752  
+    - **Mean Absolute Error (MAE):** 1.8559  
+    - **R² Score:** 0.8999
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 9.6828 
-    - **Mean Absolute Error (MAE):** 2.2949
-    - **R² Score:** 0.8450
+    - **Mean Squared Error (MSE):** 9.6826  
+    - **Mean Absolute Error (MAE):** 2.2965  
+    - **R² Score:** 0.8451
     """)
 
 # Animation
-#st.image("lasso_regression_animation.gif", caption="Model Training", use_container_width=True)
-
-#st.image("cost_convergence.gif", caption="Cost Convergence", use_container_width=True)
-
-#st.image("weights_convergence.gif", caption="Weight Convergence", use_container_width=True)
-
-st.image("actual_vs_predicted_mrr.png", caption="Actual vs Predicted", use_container_width=True)
-
-st.image("residuals_mrr.png", caption="Residual Scatter Plot", use_container_width=True)
-
+st.image("regression_animation.gif", caption="Model Training", use_container_width=True)
 
 # Metadata
 with st.expander("📂 Model Details"):
@@ -175,7 +167,7 @@ with st.expander("📂 Model Details"):
 
 # Dataset used
 with st.expander("📚 Dataset Information"):
-    st.markdown("**Model:** Lasso Regression")
+    st.markdown("**Model:** Multiple Linear Regression")
     st.write("Trained using gradient descent from scratch (no ML libraries used for training).")
     st.write("The model was trained on a dataset with 10 features, including both numerical and categorical data. All features were normalized before training.")
 
