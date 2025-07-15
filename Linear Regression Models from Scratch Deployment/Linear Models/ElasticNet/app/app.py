@@ -65,7 +65,7 @@ if st.session_state["show_landing"]:
         </style>
 
         <div class="landing-container">
-            <div class="landing-title">Lasso Regression</div>
+            <div class="landing-title">ElasticNet Regression</div>
             <div class="landing-tagline">Built from scratch.</div>
             <div class="landing-author">by FahaDragusss</div>
             <div class="button-wrapper">
@@ -142,26 +142,28 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 5.6787  
-    - **Mean Absolute Error (MAE):** 1.8577
-    - **R² Score:** 0.8998
+    - **Mean Squared Error (MSE):** 5.6852  
+    - **Mean Absolute Error (MAE):** 1.8603
+    - **R² Score:** 0.8997
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 9.6828 
-    - **Mean Absolute Error (MAE):** 2.2951
+    - **Mean Squared Error (MSE):** 9.6843 
+    - **Mean Absolute Error (MAE):** 2.2928
     - **R² Score:** 0.8450
     """)
 
 # Animation
-st.image("lasso_regression_animation.gif", caption="Model Training", use_container_width=True)
+#st.image("lasso_regression_animation.gif", caption="Model Training", use_container_width=True)
 
-st.image("cost_convergence.gif", caption="Cost Convergence", use_container_width=True)
+#st.image("cost_convergence.gif", caption="Cost Convergence", use_container_width=True)
 
-st.image("weights_convergence.gif", caption="Weight Convergence", use_container_width=True)
+#st.image("weights_convergence.gif", caption="Weight Convergence", use_container_width=True)
 
-st.image("Actual_vs_Predicted_mlassor.png", caption="Actual vs Predicted", use_container_width=True)
+st.image("Actual_vs_predicted_EN.png", caption="Actual vs Predicted", use_container_width=True)
+
+st.image("residuals_EN.png", caption="Residuals Plot", use_container_width=True)
 
 # Metadata
 with st.expander("📂 Model Details"):

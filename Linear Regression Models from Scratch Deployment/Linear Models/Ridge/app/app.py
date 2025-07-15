@@ -65,7 +65,7 @@ if st.session_state["show_landing"]:
         </style>
 
         <div class="landing-container">
-            <div class="landing-title">Lasso Regression</div>
+            <div class="landing-title">Ridge Regression</div>
             <div class="landing-tagline">Built from scratch.</div>
             <div class="landing-author">by FahaDragusss</div>
             <div class="button-wrapper">
@@ -82,10 +82,10 @@ model = joblib.load("model.joblib")
 w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 
 # Page config
-st.set_page_config(page_title="Lasso Regression App", layout="centered")
+st.set_page_config(page_title="Ridge Regression App", layout="centered")
 
 # Title
-st.title("🚗💨Lasso Regression Predictor")
+st.title("🚗💨Ridge Regression Predictor")
 st.markdown("Enter 10 feature values to get a model prediction.")
 
 # Initialize session state to store default input features
@@ -142,26 +142,29 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 5.6787  
-    - **Mean Absolute Error (MAE):** 1.8577
+    - **Mean Squared Error (MSE):** 5.6778  
+    - **Mean Absolute Error (MAE):** 1.8572
     - **R² Score:** 0.8998
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
     - **Mean Squared Error (MSE):** 9.6828 
-    - **Mean Absolute Error (MAE):** 2.2951
+    - **Mean Absolute Error (MAE):** 2.2949
     - **R² Score:** 0.8450
     """)
 
 # Animation
-st.image("lasso_regression_animation.gif", caption="Model Training", use_container_width=True)
+#st.image("lasso_regression_animation.gif", caption="Model Training", use_container_width=True)
 
-st.image("cost_convergence.gif", caption="Cost Convergence", use_container_width=True)
+#st.image("cost_convergence.gif", caption="Cost Convergence", use_container_width=True)
 
-st.image("weights_convergence.gif", caption="Weight Convergence", use_container_width=True)
+#st.image("weights_convergence.gif", caption="Weight Convergence", use_container_width=True)
 
-st.image("Actual_vs_Predicted_mlassor.png", caption="Actual vs Predicted", use_container_width=True)
+st.image("actual_vs_predicted_mrr.png", caption="Actual vs Predicted", use_container_width=True)
+
+st.image("residuals_mrr.png", caption="Residual Scatter Plot", use_container_width=True)
+
 
 # Metadata
 with st.expander("📂 Model Details"):
