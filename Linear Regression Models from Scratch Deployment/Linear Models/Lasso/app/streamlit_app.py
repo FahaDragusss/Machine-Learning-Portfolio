@@ -85,7 +85,7 @@ w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 st.set_page_config(page_title="Lasso Regression App", layout="centered")
 
 # Title
-st.title("🏠 Lasso Regression Predictor")
+st.title("🚗💨Lasso Regression Predictor")
 st.markdown("Enter 10 feature values to get a model prediction.")
 
 # Initialize session state to store default input features

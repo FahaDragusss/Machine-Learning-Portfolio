@@ -86,7 +86,7 @@ w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 st.set_page_config(page_title="Linear Regression App", layout="centered")
 
 # Title
-st.title("🏠 Linear Regression Predictor")
+st.title("🚗💨Linear Regression Predictor")
 st.markdown("Enter 10 feature values to get a model prediction.")
 
 # Initialize session state to store default input features
@@ -143,16 +143,16 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 6.4085  
-    - **Mean Absolute Error (MAE):** 2.0322  
-    - **R² Score:** 0.8841
+    - **Mean Squared Error (MSE):** 5.6752  
+    - **Mean Absolute Error (MAE):** 1.8559  
+    - **R² Score:** 0.8999
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 8.9528  
-    - **Mean Absolute Error (MAE):** 2.1759  
-    - **R² Score:** 0.8550
+    - **Mean Squared Error (MSE):** 9.6826  
+    - **Mean Absolute Error (MAE):** 2.2965  
+    - **R² Score:** 0.8451
     """)
 
 # Animation
