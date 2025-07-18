@@ -1,6 +1,31 @@
 import streamlit as st
 import numpy as np
 import joblib
+from itertools import combinations_with_replacement
+
+
+def polynomial_features(X, degree):
+    """
+    Generate polynomial features for input matrix X up to a given degree.
+    Parameters:
+        X: numpy array of shape (m, n)
+        degree: int, highest polynomial degree to generate
+    Returns:
+        X_poly: numpy array of shape (m, num_features)
+    """
+    m, n = X.shape
+    features = [np.ones((m, 1))]  # Bias term: degree 0
+    
+    for deg in range(1, degree + 1):
+        for combo in combinations_with_replacement(range(n), deg):
+            # Multiply columns based on index combo
+            col = np.ones(m)
+            for idx in combo:
+                col *= X[:, idx]
+            features.append(col.reshape(-1, 1))
+    
+    return np.hstack(features)
+
 
 # --- Query parameter to control navigation ---
 query_params = st.query_params
@@ -65,7 +90,7 @@ if st.session_state["show_landing"]:
         </style>
 
         <div class="landing-container">
-            <div class="landing-title">Multiple Linear Regression</div>
+            <div class="landing-title">Polynomial Regression</div>
             <div class="landing-tagline">Built from scratch.</div>
             <div class="landing-author">by FahaDragusss</div>
             <div class="button-wrapper">
@@ -86,17 +111,17 @@ w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 st.set_page_config(page_title="Linear Regression App", layout="centered")
 
 # Title
-st.title("🚗💨Linear Regression Predictor")
-st.markdown("Enter 10 feature values to get a model prediction.")
+st.title("🚗💨Polynomial Regression Predictor")
+st.markdown("Enter Features to predict CO2 emisions of a car.")
 
 # Initialize session state to store default input features
 if "input_features" not in st.session_state:
-    st.session_state.input_features = [0.0] * 10
+    st.session_state.input_features = [0.0] * 12 # 12 features initialized to 0.0
 
 # Feature input section
 st.subheader("🔢 Input Features")
 features = []
-for i in range(10):
+for i in range(12): # Assuming 12 features based on the dataset
     val = st.number_input(
         f"Feature {i+1}",
         value=st.session_state.input_features[i],
@@ -107,26 +132,31 @@ for i in range(10):
 
 # Prediction logic (example uses mean, std, w, b — assume they're defined)
 if st.button("🔍 Predict"):
-    x_std = (np.array(features) - mean) / std
+    features = np.array(features).reshape(1, -1)  # Shape becomes (1, n)
+    poly_features = polynomial_features(features, degree=5)  # Generate polynomial features
+    x_std = (np.array(poly_features) - mean) / std
     prediction = np.dot(x_std, w) + b
     st.success(f"🎯 Predicted Value: **{float(prediction[0]):.2f}**")
 
 
 with st.expander("💡 Example Test Inputs"):
-    st.write("Each entry shows the true value (ground truth) followed by the 10 input features used for prediction.")
+    st.write("Each entry shows the true value (ground truth) followed by the input features used for prediction.")
 
     examples = [
         {
-            "true_value": 23.7,
-            "features": [1.0, 0.0, 0.0, 0.0, 0.0, 13.0, 12.5, 7.7915, 4.2485, 4.6052]
+            "true_value": 259,
+            "features": [1.5260563034950492,2.9856819377004897,2.6461747973841225,2.8449093838194077,0,0,0,1,0,0,0,0
+]
         },
         {
-            "true_value": 35.0,
-            "features": [0.0, 1.0, 0.0, 0.0, 0.0, 13.0, 15.1, 7.8240, 4.8040, 4.4773]
+            "true_value": 342,
+            "features": [1.791759469228055,3.258096538021482,2.884800712846709,3.109060958860994,0,0,0,0,1,0,0,0
+]
         },
         {
-            "true_value": 32.4,
-            "features": [0.0, 1.0, 0.0, 0.0, 0.0, 13.0, 17.0, 7.7363, 4.6728, 4.2767]
+            "true_value": 245,
+            "features": [1.4586150226995167,2.8678989020441064,2.6100697927420065,2.760009940032921,0,0,0,1,0,0,0,0
+]
         }
     ]
 
@@ -143,34 +173,37 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 5.6752  
-    - **Mean Absolute Error (MAE):** 1.8559  
-    - **R² Score:** 0.8999
+    - **Mean Squared Error (MSE):** 87.8934 
+    - **Mean Absolute Error (MAE):** 5.1873  
+    - **R² Score:** 0.9677
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 9.6826  
-    - **Mean Absolute Error (MAE):** 2.2965  
-    - **R² Score:** 0.8451
+    - **Mean Squared Error (MSE):** 21.6996  
+    - **Mean Absolute Error (MAE):** 4.0101 
+    - **R² Score:** 0.9894
     """)
 
 # Animation
-st.image("regression_animation.gif", caption="Model Training", use_container_width=True)
+st.image("cost_convergence.gif", caption="Model Training", use_container_width=True)
+
+st.image("Predicted_vs_actual.png", caption="Predicted vs Actual", use_container_width=True)
 
 # Metadata
 with st.expander("📂 Model Details"):
-    st.write("**Weights:**", w.flatten().tolist())
-    st.write("**Bias:**", b)
-    st.write("**Mean:**", mean.tolist())
-    st.write("**Std Dev:**", std.tolist())
+    st.write("Unfortunately, the model weights and bias were a large numpy array and could not be displayed directly in the app. However, they are saved in `.npy` files for further analysis. You can them in my GitHub repository. Github.com/FahaDragusss/Machine-Learning-Cloud-Deployment-Portfolio/Linear Regression Models from Scratch Deployment/Polynomial Models/Traditional/Results")
+#    st.write("**Weights:**", w.flatten().tolist())
+#    st.write("**Bias:**", b)
+#    st.write("**Mean:**", mean.tolist())
+#    st.write("**Std Dev:**", std.tolist())
 
 # Dataset used
 with st.expander("📚 Dataset Information"):
-    st.markdown("**Model:** Multiple Linear Regression")
-    st.write("Trained using gradient descent from scratch (no ML libraries used for training).")
-    st.write("The model was trained on a dataset with 10 features, including both numerical and categorical data. All features were normalized before training.")
+    st.markdown("**Model:** Simple Polynomial Regression")
+    st.write("Trained using gradient descent with adam optimizer from scratch (no ML libraries used for training besides good'ol numpy).")
+    st.write("The model was trained on a dataset with multiple features, including both numerical and categorical data. All features were transformed to polynomial features using a funtion created also by scratch then they were normalized before training.")
 
-    st.markdown("🔗 **Source Dataset:** [Auto MPG Dataset on Kaggle](https://www.kaggle.com/datasets/yasserh/auto-mpg-dataset)")
+    st.markdown("🔗 **Source Dataset:** [Vehicle CO2 Emissions Dataset](https://www.kaggle.com/datasets/brsahan/vehicle-co2-emissions-dataset)")
     st.markdown("💻 **Model & Code Repository:** [GitHub: Machine Learning Portfolio](https://github.com/FahaDragusss/Machine-Learning-Portfolio)")
 
