@@ -123,11 +123,11 @@ st.subheader("🔢 Input Features")
 features = []
 for i in range(12): # Assuming 12 features based on the dataset
     val = st.number_input(
-        f"Feature {i+1}",
-        value=float(st.session_state.input_features[i]),  # Cast to float here
-        key=f"feature_{i}",
-        step=0.1
-    )
+    f"Feature {i+1}",
+    value=float(st.session_state.input_features[i]),  # Cast to float here
+    key=f"feature_{i}",
+    step=0.1
+)
     features.append(val)
 
 # Prediction logic (example uses mean, std, w, b — assume they're defined)

@@ -90,7 +90,7 @@ if st.session_state["show_landing"]:
         </style>
 
         <div class="landing-container">
-            <div class="landing-title">Polynomial Regression</div>
+            <div class="landing-title">Polynomial Ridge Regression</div>
             <div class="landing-tagline">Built from scratch.</div>
             <div class="landing-author">by FahaDragusss</div>
             <div class="button-wrapper">
@@ -111,7 +111,7 @@ w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 st.set_page_config(page_title="Linear Regression App", layout="centered")
 
 # Title
-st.title("🚗💨Polynomial Regression Predictor")
+st.title("🚗💨Polynomial Ridge Regression Predictor")
 st.markdown("Enter Features to predict CO2 emisions of a car.")
 
 # Initialize session state to store default input features
@@ -173,26 +173,27 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 87.8934 
-    - **Mean Absolute Error (MAE):** 5.1873  
+    - **Mean Squared Error (MSE):** 87.8976
+    - **Mean Absolute Error (MAE):** 5.1858
     - **R² Score:** 0.9677
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 21.6996  
-    - **Mean Absolute Error (MAE):** 4.0101 
+    - **Mean Squared Error (MSE):** 21.7120 
+    - **Mean Absolute Error (MAE):** 4.0225
     - **R² Score:** 0.9894
     """)
 
 # Animation
 st.image("cost_convergence.gif", caption="Model Training", use_container_width=True)
 
-st.image("Predicted_vs_actual.png", caption="Predicted vs Actual", use_container_width=True)
+st.image("Predicted_vs_actual_prr.png", caption="Predicted vs Actual", use_container_width=True)
 
 # Metadata
 with st.expander("📂 Model Details"):
     st.write("Unfortunately, the model weights and bias were a large numpy array and could not be displayed directly in the app. However, they are saved in `.npy` files for further analysis. You can them in my GitHub repository. Github.com/FahaDragusss/Machine-Learning-Cloud-Deployment-Portfolio/Linear Regression Models from Scratch Deployment/Polynomial Models/Traditional/Results")
+    st.write("The L2 regularization parameter was set to 0.2 during training, which seemed helped to prevent overfitting and improve generalization on unseen data.")
 #    st.write("**Weights:**", w.flatten().tolist())
 #    st.write("**Bias:**", b)
 #    st.write("**Mean:**", mean.tolist())
@@ -200,7 +201,7 @@ with st.expander("📂 Model Details"):
 
 # Dataset used
 with st.expander("📚 Dataset Information"):
-    st.markdown("**Model:** Simple Polynomial Regression")
+    st.markdown("**Model:**Polynomial Ridge Regression")
     st.write("Trained using gradient descent with adam optimizer from scratch (no ML libraries used for training besides good'ol numpy).")
     st.write("The model was trained on a dataset with multiple features, including both numerical and categorical data. All features were transformed to polynomial features using a funtion created also by scratch then they were normalized before training.")
 
