@@ -2,7 +2,7 @@
 
 This module implements **ElasticNet Regression** from scratch using only NumPy — combining both **L1 (Lasso)** and **L2 (Ridge)** regularization. The ElasticNet algorithm helps balance coefficient shrinkage and sparsity, offering robustness on datasets with multicollinearity or when neither Lasso nor Ridge alone performs optimally.
 
-While the model performs **competitively**, it does **not outperform** traditional linear regression on this dataset and was not deployed for demonstration.
+While the model performs **competitively**, it does **not outperform** traditional linear regression on this dataset and was only deployed to showcase the ability to implement such model from scratch.
 
 ---
 
@@ -95,7 +95,6 @@ The ElasticNet implementation performs reliably but does not outperform traditio
 
 - ElasticNet serves as a **hybrid regularization model**, combining benefits of Lasso and Ridge.
 - Ideal for datasets with **many features** or **high multicollinearity** — but unnecessary here.
-- Deployment was skipped due to **no added benefit** over simpler models.
 
 ---
 

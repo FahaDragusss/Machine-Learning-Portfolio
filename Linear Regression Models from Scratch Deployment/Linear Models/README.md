@@ -1,6 +1,6 @@
 # 📌 Linear Regression models from Scratch (Deployed!)
 
-This project is a subset/small step 1 of implementing Linear Regression, Ridge, Lasso, and ElasticNet from scratch using vectorized NumPy.
+This project is a subset/small step 1 of implementing Linear and Logistic Regression, Ridge, Lasso, and ElasticNet from scratch using vectorized NumPy. In step 1 we implement Linear Regression with linear features, Ridge, Lasso and ElasticNet from scratch using vectorized Numpy.
 
 It is trained on a real-world dataset and is deployed using Streamlit on Hugging Face Spaces.
 

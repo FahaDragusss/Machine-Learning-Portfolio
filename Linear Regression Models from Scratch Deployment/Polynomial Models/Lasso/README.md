@@ -1,23 +1,26 @@
-# 📌 Lasso Regression from Scratch (Deployed on Hugging Face)
+# 📌 Polynomial Lasso Regression from Scratch (Deployed on Hugging Face)
 
 This module implements **Lasso Regression** from scratch using NumPy, including model training, evaluation, and deployment with a simple Streamlit interface.
 
-Lasso introduces **L1 regularization**, encouraging sparsity in model coefficients — a valuable trait in high-dimensional datasets. While it doesn't outperform the traditional model here, it offers robustness and has been deployed for demonstration.
+Lasso introduces **L1 regularization**, encouraging sparsity in model coefficients — a valuable trait in high-dimensional datasets.
+
+Moreover, the **adam optimizer** used was also implemented by me. Only Numpy was used for the implementation.
 
 ---
 
 ## 🌐 Live Demo
 
 > Try the model directly here:  
-🔗 [Lasso Regression on Hugging Face](https://huggingface.co/spaces/FahaDragusss/Lasso-Regression-scratch-streamlit)
+🔗 [Lasso Regression on Hugging Face](https://huggingface.co/spaces/FahaDragusss/Poly-lasso-regression-scratch-streamlit)
 
 ---
 
 ## 🧠 Key Features
 
 - ✅ Written completely from scratch — no scikit-learn used for training  
+- ✅ Trained using **Batch Gradient descent** and **Adam optimizer** both implemented from scratch
 - ✅ Implements **L1 regularization** (Lasso)  
-- ✅ Trained on cleaned Auto-MPG dataset  
+- ✅ Trained on cleaned subset of Vehicle CO2 Emmision dataset 
 - ✅ **Deployed** using Streamlit and Hugging Face 
 - ✅ Fully modular structure for training, evaluation, and visualization  
 - ✅ Compared directly with traditional Multiple Linear Regression  
@@ -37,17 +40,10 @@ Lasso/
 │ ├── model.joblib
 │ └── requirements.txt
 │
-├── Dataset/
-│
-├── DevSet/ # Early experiments on synthetic data
-│
-├── EDA-&-Preprocessing/ # Cleaned and processed dataset
-│ ├── car-mpg.csv
-│ └── EDA & preprocessing.ipynb
+├── Dataset/ # Subset of the main dataset.
 │
 ├── Implementation/ # Training and model evaluation code
-│ └── Lasso Model.ipynb
-│ 
+│ └── Polynomial Lasso Model.ipynb
 │
 ├── Results/ # Final plots
 │
@@ -59,52 +55,44 @@ Lasso/
 ## 📊 Model Performance Summary
 
 ### ✅ Generalization:
-- **Test R²**: `0.8998`  
-- **Train R²**: `0.8451`  
-- Higher test R² suggests strong generalization and no overfitting.
+- **Test R²**: `0.9984`  
+- **Train R²**: `0.9984`  
+- Same R² suggests strong generalization and no overfitting.
 
 ---
 
 ### ✅ Error Metrics:
-- **MSE increased** slightly from `5.6752` → `5.6786`  
-- This is just a **0.02% increase** in average prediction error (based on RMSE).  
+- **MSE** is also practically the same (5.2440) for Test and (5.2694) for the Train.  
 - **MAE and MSE** continue to decline during training on both sets, confirming **stable convergence**.
 
 ---
 
-### ✅ R² Score Trends:
-- **Train R²**: `0.8451 → 0.8451`  
-- **Test R²**: `0.8999 → 0.8998`  
-- These stable metrics suggest the optimization had already reached an efficient solution.
-
----
-
 ### 📈 Summary:
-While the Lasso model **does not outperform** the traditional Multiple Linear Regression model on this dataset, it was successfully implemented and deployed to demonstrate the behavior of **L1 regularization** in action.
+The **lasso** Model performed very well, it was successfully implemented and deployed to demonstrate the behavior of **L1 regularization** in action.
 
 ---
 
 ## 📊 Evaluation Plots
 
-### 📉 Residuals Plot  
-The residuals are randomly scattered around the **y = 0** line, showing no visible patterns — a sign of good fit.
+### 📉  Cost Convergence animation  
+We can see how after each iteration the model cost decreases. and converges.
 
-![Residual Scatter Plot](./Results/residuals_mlassor.png)
+![Cost Convergence](./Results/cost_convergence.gif)
 
 ---
 
 ### 📊 Actual vs Predicted Plot  
 Most data points lie near the **y = x** line, meaning predictions closely match actual values.
 
-![Actual vs Predicted Plot](./Results/Actual_vs_Predicted_mlassor.png)
+![Actual vs Predicted Plot](./Results/Predicted_vs_actual_plr.png)
 
 ---
 
 ## 📝 Takeaways
 
 - Lasso offers robustness and encourages **sparse feature selection**, useful in complex domains.
-- On this dataset, it **does not significantly improve metrics** but maintains stability and generalization.
-- Still valuable as a deployed regularized model and a conceptual tool.
+- On this dataset, it **does significantly improve metrics** and maintains stability and generalization.
+- Model deployed.
 
 ---
 
