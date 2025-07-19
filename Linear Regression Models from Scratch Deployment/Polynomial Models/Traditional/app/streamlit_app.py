@@ -108,7 +108,7 @@ model = joblib.load("model.joblib")
 w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 
 # Page config
-st.set_page_config(page_title="Linear Regression App", layout="centered")
+st.set_page_config(page_title="Polynomial Regression App", layout="centered")
 
 # Title
 st.title("🚗💨Polynomial Regression Predictor")

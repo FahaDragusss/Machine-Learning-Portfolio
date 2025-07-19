@@ -90,7 +90,7 @@ if st.session_state["show_landing"]:
         </style>
 
         <div class="landing-container">
-            <div class="landing-title">Polynomial Ridge Regression</div>
+            <div class="landing-title">Polynomial ElasticNet Regression</div>
             <div class="landing-tagline">Built from scratch.</div>
             <div class="landing-author">by FahaDragusss</div>
             <div class="button-wrapper">
@@ -108,10 +108,10 @@ model = joblib.load("model.joblib")
 w, b, mean, std = model["w"], model["b"], model["mean"], model["std"]
 
 # Page config
-st.set_page_config(page_title="Polynomial Ridge Regression App", layout="centered")
+st.set_page_config(page_title="Polynomial ElasticNet Regression App", layout="centered")
 
 # Title
-st.title("🚗💨Polynomial Ridge Regression Predictor")
+st.title("🚗💨Polynomial ElasticNet Regression Predictor")
 st.markdown("Enter Features to predict CO2 emisions of a car.")
 
 # Initialize session state to store default input features
@@ -144,18 +144,18 @@ with st.expander("💡 Example Test Inputs"):
 
     examples = [
         {
-            "true_value": 259,
-            "features": [1.5260563034950492,2.9856819377004897,2.6461747973841225,2.8449093838194077,0,0,0,1,0,0,0,0
+            "true_value": 230,
+            "features": [1.2237754316221157,2.525728644308256,2.2192034840549946,2.3978952727983707,0,1,0,0,0,0,0,0
 ]
         },
         {
-            "true_value": 342,
-            "features": [1.791759469228055,3.258096538021482,2.884800712846709,3.109060958860994,0,0,0,0,1,0,0,0
+            "true_value": 432,
+            "features": [1.9459101490553128,3.131136910560194,2.772588722239781,2.9856819377004897,0,0,0,0,1,0,0,0
 ]
         },
         {
-            "true_value": 245,
-            "features": [1.4586150226995167,2.8678989020441064,2.6100697927420065,2.760009940032921,0,0,0,1,0,0,0,0
+            "true_value": 110,
+            "features": [1.0986122886681098,1.7404661748405046,1.7749523509116738,1.7578579175523736,0,1,0,0,0,0,0,0
 ]
         }
     ]
@@ -173,22 +173,22 @@ with st.expander("💡 Example Test Inputs"):
 with st.expander("📊 Model Performance Metrics"):
     st.subheader("🧪 Test Metrics (on unseen data)")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 87.8976
-    - **Mean Absolute Error (MAE):** 5.1858
-    - **R² Score:** 0.9677
+    - **Mean Squared Error (MSE):** 5.2493
+    - **Mean Absolute Error (MAE):** 1.9046
+    - **R² Score:** 0.9984
     """)
 
     st.subheader("🎓 Training Metrics")
     st.markdown("""
-    - **Mean Squared Error (MSE):** 21.7120 
-    - **Mean Absolute Error (MAE):** 4.0225
-    - **R² Score:** 0.9894
+    - **Mean Squared Error (MSE):** 5.2696
+    - **Mean Absolute Error (MAE):** 1.9066
+    - **R² Score:** 0.9984
     """)
 
 # Animation
 st.image("cost_convergence.gif", caption="Model Training", use_container_width=True)
 
-st.image("Predicted_vs_actual_prr.png", caption="Predicted vs Actual", use_container_width=True)
+st.image("Predicted_vs_actual_plr.png", caption="Predicted vs Actual", use_container_width=True)
 
 # Metadata
 with st.expander("📂 Model Details"):
@@ -201,7 +201,7 @@ with st.expander("📂 Model Details"):
 
 # Dataset used
 with st.expander("📚 Dataset Information"):
-    st.markdown("**Model:**Polynomial Ridge Regression")
+    st.markdown("**Model:**Polynomial ElasticNet Regression")
     st.write("Trained using gradient descent with adam optimizer from scratch (no ML libraries used for training besides good'ol numpy).")
     st.write("The model was trained on a dataset with multiple features, including both numerical and categorical data. All features were transformed to polynomial features using a funtion created also by scratch then they were normalized before training.")
 
