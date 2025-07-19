@@ -188,7 +188,7 @@ with st.expander("📊 Model Performance Metrics"):
 # Animation
 st.image("cost_convergence.gif", caption="Model Training", use_container_width=True)
 
-st.image("Predicted_vs_actual_plr.png", caption="Predicted vs Actual", use_container_width=True)
+st.image("Predicted_vs_actual_per.png", caption="Predicted vs Actual", use_container_width=True)
 
 # Metadata
 with st.expander("📂 Model Details"):
