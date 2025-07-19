@@ -1,4 +1,4 @@
-# 📌 Lasso Regression from Scratch (Deployed!)
+# 📌 Linear Regression models from Scratch (Deployed!)
 
 This project is a subset/small step 1 of implementing Linear Regression, Ridge, Lasso, and ElasticNet from scratch using vectorized NumPy.
 
@@ -38,8 +38,14 @@ It is trained on a real-world dataset and is deployed using Streamlit on Hugging
 ## 🔗 Live Demo Multiple Linear Regression
 🎯 **[👉 Try the Streamlit App on Hugging Face](https://huggingface.co/spaces/FahaDragusss/MLR-scratch-streamlit)**
 
+## 🔗 Live Demo Ridge Regression
+🎯 **[👉 Try the Streamlit App on Hugging Face](https://huggingface.co/spaces/FahaDragusss/Ridge-regression-scratch-streamlit)**
+
 ## 🔗 Live Demo Lasso Regression
 🎯 **[👉 Try the Streamlit App on Hugging Face](https://huggingface.co/spaces/FahaDragusss/Lasso-Regression-scratch-streamlit)**
+
+## 🔗 Live Demo ElasticNet Linear Regression
+🎯 **[👉 Try the Streamlit App on Hugging Face](https://huggingface.co/spaces/FahaDragusss/ElasticNet-regression-scratch-streamlit)**
 
 ---
 
