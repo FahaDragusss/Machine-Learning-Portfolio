@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Engine Health Predictive Maintenance Dashboard</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background-color: #000;
+        color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+        padding-top: 50px;
+      }
+
+      .dashboard-box {
+        background-color: #111;
+        padding: 30px;
+        border-radius: 10px;
+        width: 500px;
+        box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 0;
+        font-size: 24px;
+        color: #00ffcc;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        background-color: #00ffcc;
+        color: #000;
+        border: none;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #00ccaa;
+      }
+
+      .log {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .green {
+        background-color: #198754;
+      }
+
+      .red {
+        background-color: #dc3545;
+      }
+
+      canvas {
+        background-color: #111;
+        border: 1px solid #333;
+        margin-top: 20px;
+        width: 100%;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard-box">
+      <h1>Engine Health Dashboard</h1>
+      <div id="root"></div>
+    </div>
+
+    <script type="text/babel">
+      const { useState, useEffect, useRef } = React;
+
+      function App() {
+        const [logs, setLogs] = useState([]);
+        const [polling, setPolling] = useState(false);
+        const canvasRef = useRef(null);
+
+        const drawGraph = (status) => {
+          const canvas = canvasRef.current;
+          const ctx = canvas.getContext("2d");
+          const width = canvas.width;
+          const height = canvas.height;
+
+          ctx.fillStyle = "#111";
+          ctx.fillRect(0, 0, width, height);
+
+          ctx.strokeStyle = status === "good" ? "#00ff00" : "#ff0000";
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+
+          for (let x = 0; x < width; x++) {
+            let y = status === "good" ? height / 2 : (x === Math.floor(width / 2) ? height * 0.2 : height / 2);
+            ctx.lineTo(x, y);
+          }
+
+          ctx.stroke();
+        };
+
+        const startPrediction = async () => {
+          setLogs([]);
+          drawGraph("good"); // reset graph
+
+          try {
+            await fetch("http://localhost:8000/predict", {
+              method: "POST"
+            });
+            setPolling(true);
+          } catch (err) {
+            console.error("Error starting prediction:", err);
+          }
+        };
+
+        useEffect(() => {
+          if (!polling) return;
+
+          let count = 0;
+          const interval = setInterval(() => {
+            fetch("http://localhost:8000/latest")
+              .then((res) => res.json())
+              .then((data) => {
+                const isGood = data.prediction === 1;
+                const log = {
+                  text: isGood
+                    ? "✅ Engine Health is GOOD"
+                    : "⚠️ Engine Health is BAD",
+                  color: isGood ? "green" : "red",
+                  status: isGood ? "good" : "bad",
+                };
+
+                setLogs((prev) => {
+                  const updated = [log, ...prev];
+                  if (updated.length > 5) updated.pop();
+                  return updated;
+                });
+
+                drawGraph(log.status);
+              })
+              .catch((err) => console.error("Fetch error:", err));
+
+            count++;
+            if (count >= 10) {
+              clearInterval(interval);
+              setPolling(false);
+            }
+          }, 1000);
+
+          return () => clearInterval(interval);
+        }, [polling]);
+
+        return (
+          <div>
+            <button onClick={startPrediction}>Start Prediction (10s)</button>
+            {logs.map((log, i) => (
+              <div key={i} className={`log ${log.color}`}>
+                {log.text}
+              </div>
+            ))}
+            <canvas ref={canvasRef} width={400} height={100}></canvas>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
