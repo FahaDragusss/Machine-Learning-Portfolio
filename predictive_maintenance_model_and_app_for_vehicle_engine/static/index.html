@@ -117,7 +117,7 @@
           drawGraph("good"); // reset graph
 
           try {
-            await fetch("http://localhost:8000/predict", {
+            await fetch("https://engine-predictive-maintenance-ml-service.onrender.com/predict", {
               method: "POST"
             });
             setPolling(true);
@@ -131,7 +131,7 @@
 
           let count = 0;
           const interval = setInterval(() => {
-            fetch("http://localhost:8000/latest")
+            fetch("https://engine-predictive-maintenance-ml-service.onrender.com/latest")
               .then((res) => res.json())
               .then((data) => {
                 const isGood = data.prediction === 1;
